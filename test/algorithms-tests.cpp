@@ -1,4 +1,4 @@
-#include "..\src\algorithms\non-cryptographic-algorithms\Xorshift\Xoroshiro64.h"
+#include "..\src\algorithms\non-cryptographic-algorithms\ACORN\ACORN.h"
 
 #include <iostream>
 
@@ -7,11 +7,11 @@ using namespace Sequency;
 
 int main()
 {
-    Xoroshiro64 xoroshiro64(123456789);
+    ACORN ms(120, 1 << 30);
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 1000; i++)
     {
-        cout << xoroshiro64.generate(0, 100) << endl;
+        cout << ms.generate() << endl;
     }
 
     return 0;
