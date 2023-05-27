@@ -1,0 +1,22 @@
+* Blum Blum Shub (BBS) is a pseudorandom number generator (PRNG) that is based on the difficulty of factoring large semiprime numbers. Here's a description of the BBS algorithm, its use cases, pros, and cons:
+
+- Description:
+Blum Blum Shub is a deterministic PRNG that generates a sequence of pseudorandom bits. It operates on the principle of computing modular square roots of quadratic residues. The algorithm requires three inputs: two large prime numbers p and q, and an initial seed value called the "seed."
+The BBS algorithm generates a sequence of random bits by repeatedly squaring the seed modulo n, where n = p * q. The output bit is the least significant bit of the squared value, and the squared value becomes the new seed for the next iteration.
+
+- Use Cases:
+Blum Blum Shub can be used in various applications that require random numbers, such as cryptography, simulations, and statistical sampling. However, it is generally not recommended for cryptographic purposes due to concerns about its security.
+
+- Pros:
+Theoretical security: BBS is based on the difficulty of factoring large semiprime numbers, which is believed to be a computationally hard problem. In theory, the algorithm provides strong security properties.
+Deterministic: BBS is a deterministic PRNG, meaning that given the same inputs, it will always produce the same sequence of random bits. This property can be useful in certain scenarios where reproducibility is required.
+
+Cons:
+Speed: BBS is relatively slow compared to other PRNG algorithms. The computation of modular square roots can be computationally expensive, especially for large primes p and q.
+Security concerns: BBS has been subject to cryptanalysis, and some weaknesses have been identified. For example, if an attacker can factorize n or determine the seed value, the generated random bits can be predicted.
+
+Use:
+
+BlumBlumShub bbs(seed, p, q) <-- We're creating a BlumBlumShub object, where inside we'll put the seed and the 2 prime numbers p and q.
+
+int8 random_number = bbs.generate(0, 0xff) <-- Generating the random number.
