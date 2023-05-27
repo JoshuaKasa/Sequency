@@ -1,4 +1,4 @@
-#include "../src/algorithms/cryptographic-algorithms/Twofish/Twofish.h"
+#include "../src/algorithms/cryptographic-algorithms/Twofish.h"
 
 #include <iostream>
 
@@ -7,9 +7,9 @@ using namespace Sequency;
 
 int main()
 {
-    /*
+    /* ChaCha20 test
 
-     uint8_t key[32] = {
+     int8 key[32] = {
                         0x00, 0x01, 0x02, 0x03, 0x04, 0x05,
                         0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B,
                         0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11,
@@ -17,7 +17,7 @@ int main()
                         0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,
                         0x1E, 0x1F
     };
-    uint8_t nonce[8] = {
+    int8 nonce[8] = {
                         0x01, 0x02, 0x03, 0x04,
                         0x05, 0x06, 0x07, 0x08
     };
@@ -29,7 +29,8 @@ int main()
 
      */
 
-    int8 secret[32] = {
+    /* Twofish test
+    int8 key[32] = {
             0x00, 0x01, 0x02, 0x03, 0x04, 0x05,
             0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B,
             0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11,
@@ -38,10 +39,12 @@ int main()
             0x1E, 0x1F
     };
 
-    Twofish twofish(secret);
+    Twofish twofish(key);
 
     for (int i = 0; i < 10; i++)
         cout << twofish.generate(0, 0xff) << endl;
+
+        */
 
     return 0;
 }

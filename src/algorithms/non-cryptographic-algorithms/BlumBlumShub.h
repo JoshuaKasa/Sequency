@@ -1,9 +1,13 @@
 #ifndef BLUMBLUMSHUB_H
 #define BLUMBLUMSHUB_H
 
-#include "../../../core/types.h"
-#include "../../../core/utils_functions.h"
+#include "../../core/types.h"
+#include "../../core/utils_functions.h"
 
+/*
+ * I'm not putting Blum Blum Shub in the "cryptographic algorithms" folder because it's not a cryptographic algorithm
+ * if p and q aren't at least 1024 bits long.
+ */
 namespace Sequency
 {
     class BlumBlumShub {

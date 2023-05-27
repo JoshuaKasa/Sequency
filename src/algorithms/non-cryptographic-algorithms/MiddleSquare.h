@@ -1,7 +1,7 @@
 #ifndef MIDDLESQUARE_H
 #define MIDDLESQUARE_H
 
-#include "../../../core/types.h"
+#include "../../core/types.h"
 
 namespace Sequency
 {

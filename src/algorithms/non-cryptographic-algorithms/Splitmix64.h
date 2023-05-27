@@ -1,7 +1,7 @@
 #ifndef SPLITMIX64_H
 #define SPLITMIX64_H
 
-#include "../../../core/types.h"
+#include "../../core/types.h"
 
 namespace Sequency
 {

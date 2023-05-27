@@ -1,7 +1,7 @@
 #ifndef TWOFISH_H
 #define TWOFISH_H
 
-#include "../../../core/types.h"
+#include "../../core/types.h"
 #include <string>
 
 namespace Sequency
