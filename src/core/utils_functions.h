@@ -13,6 +13,7 @@
 bool is_power_of_two(int64 number);
 bool is_even(int64 number);
 bool is_odd(int64 number);
+bool is_prime(int64 number);
 int64 next_power_of_two(int64 number);
 int64 previous_power_of_two(int64 number);
 int64 next_fibonacci_number(int64 number);
@@ -30,6 +31,26 @@ bool is_even(int64 number)
 bool is_odd(int64 number)
 {
     return (number & 1) == 1;
+}
+
+bool is_prime(int64 number)
+{
+    if (number <= 1)
+        return false;
+    if (number <= 3)
+        return true;
+
+    if (is_even(number) || number % 3 == 0)
+        return false;
+
+    int64 limit = static_cast<int64>(sqrt(number));
+    for (int64 i = 5; i <= limit; i += 6)
+    {
+        if (number % i == 0 || number % (i + 2) == 0)
+            return false;
+    }
+
+    return true;
 }
 
 int64 next_power_of_two(int64 number)
