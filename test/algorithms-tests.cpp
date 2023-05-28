@@ -1,4 +1,5 @@
-#include "../src/algorithms/cryptographic-algorithms/Twofish.h"
+#include "../src/algorithms/cryptographic-algorithms/MARS.h"
+#include "../src/algorithms/non-cryptographic-algorithms/Xoroshiro64.h"
 
 #include <iostream>
 
@@ -45,6 +46,27 @@ int main()
         cout << twofish.generate(0, 0xff) << endl;
 
         */
+
+    /* MARS test */
+    Xoroshiro64 xoroshiro64(0x12345678);
+
+    int32 key1[47];
+    int32 key2[40];
+    int32 key_in[] = {0x12345678, 0x9abcdef0, 0xdeadbeef,};
+    int32 key_len = sizeof(key_in) / sizeof(key_in[0]);
+    int32 seed = 0x93CD3A2C;
+
+    // Generating the 2 keys (47 and 40 entries of 32 bits) using XoroShiro64
+    for (unsigned int & i : key1)
+        i = xoroshiro64.generate(0, 0xffffffff);
+    for (unsigned int & i : key2)
+        i = xoroshiro64.generate(0, 0xffffffff);
+
+    Sequency::MARS mars(seed, key1, key2);
+
+    for (int i = 0; i < 10; i++)
+        cout << mars.generate(0, 0xffffffff) << endl;
+
 
     return 0;
 }
