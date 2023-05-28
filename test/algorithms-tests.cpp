@@ -1,7 +1,8 @@
-#include "../src/algorithms/cryptographic-algorithms/MARS.h"
-#include "../src/algorithms/non-cryptographic-algorithms/Xoroshiro64.h"
+#include "../src/algorithms/cryptographic-algorithms/ISAAC.h"
 
 #include <iostream>
+
+#define LOOP(i, n) for (int i = 0; i < n; i++)
 
 using namespace std;
 using namespace Sequency;
@@ -47,26 +48,40 @@ int main()
 
         */
 
-    /* MARS test */
-    Xoroshiro64 xoroshiro64(0x12345678);
+    /* MARS test
+    int32 key[4] = {
+            0x01234567, 0x89abcdef, 0xfedcba98, 0x76543210 // in block
+    };
 
-    int32 key1[47];
-    int32 key2[40];
-    int32 key_in[] = {0x12345678, 0x9abcdef0, 0xdeadbeef,};
-    int32 key_len = sizeof(key_in) / sizeof(key_in[0]);
-    int32 seed = 0x93CD3A2C;
-
-    // Generating the 2 keys (47 and 40 entries of 32 bits) using XoroShiro64
-    for (unsigned int & i : key1)
-        i = xoroshiro64.generate(0, 0xffffffff);
-    for (unsigned int & i : key2)
-        i = xoroshiro64.generate(0, 0xffffffff);
-
-    Sequency::MARS mars(seed, key1, key2);
+    MARS mars(key);
 
     for (int i = 0; i < 10; i++)
-        cout << mars.generate(0, 0xffffffff) << endl;
+        cout << mars.generate() << endl;
+    */
 
+    /* Yamb test
+    const int8 key[] = {
+            0x12, 0x34, 0x56, 0x78
+    };
+    const int8 iv[] = {
+            0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22
+    };
+    int16 key_size = 32;
+    int16 iv_size = 64;
+
+    Yamb yamb;
+
+    yamb.keysetup(key, key_size, iv_size);
+    yamb.ivsetup(iv);
+
+    for (int i = 0; i < 10; i++)
+        cout << yamb.generate(0, 0xff) << endl;*/
+
+    /* ISAAC test
+    ISAAC isaa(0x12345678);
+
+    LOOP(i, 10)
+        cout << isaa.generate(0, 0xff) << endl;*/
 
     return 0;
 }
