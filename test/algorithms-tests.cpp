@@ -1,4 +1,4 @@
-#include "../src/algorithms/cryptographic-algorithms/ISAAC.h"
+#include "../src/algorithms/non-cryptographic-algorithms/KISS.h"
 
 #include <iostream>
 
@@ -82,6 +82,12 @@ int main()
 
     LOOP(i, 10)
         cout << isaa.generate(0, 0xff) << endl;*/
+
+    /* KISS test */
+    KISS kiss(0x12345678);
+
+    LOOP(i, 1000)
+        cout << kiss.generate(0, 0xfffff) << endl;
 
     return 0;
 }
