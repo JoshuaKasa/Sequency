@@ -5,11 +5,11 @@
 #include <vector>
 #include "../../core/types.h"
 
-namespace Sequency
-{
+namespace Sequency {
     class ChaCha20 {
     private:
         std::vector<int32> state;
+        int32 counter;
 
         static void quarterRound(int32& a, int32& b, int32& c, int32& d)
         {
@@ -23,7 +23,7 @@ namespace Sequency
         {
             std::vector<int32> tempState = state;
 
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 10; i++)
             {
                 quarterRound(tempState[0], tempState[4], tempState[8], tempState[12]);
                 quarterRound(tempState[1], tempState[5], tempState[9], tempState[13]);
@@ -35,8 +35,10 @@ namespace Sequency
                 quarterRound(tempState[3], tempState[4], tempState[9], tempState[14]);
             }
 
-            for (int i = 0; i < 16; ++i)
+            for (int i = 0; i < 16; i++)
                 state[i] += tempState[i];
+
+            counter++;
         }
 
     public:
@@ -54,13 +56,22 @@ namespace Sequency
             memcpy(&state[4], key, 32);
 
             // Set nonce
-            memcpy(&state[13], nonce, 8);
+            state[12] = 0;
+            state[13] = 0;
+            memcpy(&state[14], nonce, 8);
+
+            counter = 0;
         }
 
         int32 generate(int32 min, int32 max)
         {
-            nextState();
-            return min + (state[0] % (max - min + 1));
+            if (counter % 16 == 0)
+                nextState();
+
+            int32 result = state[counter % 16];
+            counter++;
+
+            return min + (result % (max - min + 1));
         }
     };
 }
