@@ -17,10 +17,11 @@ bool is_prime(int64 number);
 int64 next_power_of_two(int64 number);
 int64 previous_power_of_two(int64 number);
 int64 next_fibonacci_number(int64 number);
-int64 rotate_left64(int64 &number, int64 bits);
-int64 rotate_right64(int64 &number, int64 bits);
-int32 rotate_left32(const int32 &number, int32 bits);
-int32 rotate_right32(int32 &number, int32 bits);
+
+#define rotate_left32(x, n) (((x) << (n)) | ((x) >> (32 - (n))))
+#define rotate_right32(x, n) (((x) >> (n)) | ((x) << (32 - (n))))
+#define rotate_left64(x, n) (((x) << (n)) | ((x) >> (64 - (n))))
+#define rotate_right64(x, n) (((x) >> (n)) | ((x) << (64 - (n))))
 
 bool is_power_of_two(int64 number)
 {
@@ -99,26 +100,6 @@ int64 next_fibonacci_number(int64 number)
     double phi = (1 + sqrt(5)) / 2;
 
     return static_cast<int64>(round(pow(phi, number) / sqrt(5)));
-}
-
-int64 rotate_left64(int64 &number, int64 bits)
-{
-    return (number << bits) | (number >> (64 - bits));
-}
-
-int64 rotate_right64(int64 &number, int64 bits)
-{
-    return (number >> bits) | (number << (64 - bits));
-}
-
-int32 rotate_left32(const int32 &number, int32 bits)
-{
-    return (number << bits) | (number >> (32 - bits));
-}
-
-int32 rotate_right32(int32 &number, int32 bits)
-{
-    return (number >> bits) | (number << (32 - bits));
 }
 
 #endif // UTILS_FUNCTIONS_H
