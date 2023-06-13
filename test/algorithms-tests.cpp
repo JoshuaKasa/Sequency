@@ -1,4 +1,4 @@
-#include "../src/algorithms/cryptographic-algorithms/Salsa20.h"
+#include "../src/algorithms/non-cryptographic-algorithms/Squares.h"
 
 #include <iostream>
 
@@ -132,6 +132,18 @@ int main()
 
     LOOP(i, 255)
         cout << salsa.generate(0, 0xff) << endl; */
+
+    /* RANROT test
+    RANROT ranrot(0x12345678);
+
+    LOOP(i, 255)
+        cout << ranrot.generate(0, 0xff) << endl; */
+
+    /* Squares test
+    Squares squares(0x12345678);
+
+    LOOP(i, 255)
+        cout << squares.generate(0, 0xff) << endl; */
 
     return 0;
 }
