@@ -2,7 +2,7 @@
 #define XOROSHIRO64_H
 
 #include "../../core/types.h"
-#include "Splitmix64.h"
+#include "Splitmix64.hpp"
 
 namespace Sequency
 {

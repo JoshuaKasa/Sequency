@@ -1,4 +1,4 @@
-#include "../src/algorithms/non-cryptographic-algorithms/Squares.h"
+#include "../src/algorithms/non-cryptographic-algorithms/Squares.hpp"
 
 #include <iostream>
 
